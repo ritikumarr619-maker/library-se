@@ -17,3 +17,9 @@ class Library:
 
     def return_book(self, book_id):
         self.books[book_id]["borrowed"] = False
+    def generate_report(self):
+        report = ["ID | Title | Author | Status"]
+        for book_id, info in self.books.items():
+            status = "Borrowed" if info["borrowed"] else "Available"
+            report.append(f"{book_id} | {info['title']} | {info['author']} | {status}")
+        return report

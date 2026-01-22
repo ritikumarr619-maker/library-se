@@ -36,3 +36,16 @@ class TestLibrarySprint2(unittest.TestCase):
         self.lib.borrow_book("B1")
         self.lib.return_book("B1")
         self.assertFalse(self.lib.books["B1"]["borrowed"])
+class TestLibrarySprint3(unittest.TestCase):
+
+    def setUp(self):
+        self.lib = Library()
+        self.lib.add_book("B1", "Python", "Guido")
+
+    def test_report_header(self):
+        report = self.lib.generate_report()
+        self.assertIn("ID | Title | Author | Status", report[0])
+
+    def test_report_contains_book(self):
+        report = self.lib.generate_report()
+        self.assertTrue(len(report) > 1)
